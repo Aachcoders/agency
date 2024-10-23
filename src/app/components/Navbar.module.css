@@ -1,0 +1,135 @@
+.logoContainer {
+    padding: 10px;
+    margin-right: 20px;
+  }
+  
+  .futuristicLogo {
+    position: relative;
+    padding: 10px;
+  }
+  
+  .logoText {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .logoText::before {
+    content: 'FUTURISTIC';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #0ff;
+    filter: blur(15px);
+    animation: glitch 3s infinite;
+  }
+  
+  .logoLine {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, #0ff, transparent);
+    height: 2px;
+    width: 100%;
+    bottom: 0;
+    opacity: 0.5;
+    animation: scan 2s linear infinite;
+  }
+  
+  .circuitLines {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+  
+  .circuitLine {
+    position: absolute;
+    background: #0ff;
+    opacity: 0.2;
+    height: 1px;
+  }
+  
+  .circuitLine:nth-child(1) {
+    top: 20%;
+    left: 30%;
+    width: 40%;
+  }
+  
+  .circuitLine:nth-child(2) {
+    top: 40%;
+    left: 10%;
+    width: 20%;
+  }
+  
+  .circuitLine:nth-child(3) {
+    top: 60%;
+    left: 50%;
+    width: 30%;
+  }
+  
+  .corner {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #0ff;
+    opacity: 0.5;
+  }
+  
+  .corner1 {
+    top: 0;
+    left: 0;
+  }
+  
+  .corner2 {
+    top: 0;
+    right: 0;
+  }
+  
+  .corner3 {
+    bottom: 0;
+    left: 0;
+  }
+  
+  .corner4 {
+    bottom: 0;
+    right: 0;
+  }
+  
+  @keyframes glow {
+    0% {
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+      transform: scale(1);
+    }
+    100% {
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.8),
+                    0 0 30px rgba(0, 255, 255, 0.6),
+                    0 0 40px rgba(0, 255, 255, 0.4);
+      transform: scale(1.05);
+    }
+  }
+  
+  @keyframes glitch {
+    0%, 100% { clip-path: inset(0 0 0 0); }
+    20% { clip-path: inset(20% 0 0 0); }
+    40% { clip-path: inset(40% 0 60% 0); }
+    60% { clip-path: inset(60% 0 40% 0); }
+    80% { clip-path: inset(80% 0 20% 0); }
+  }
+  
+  @keyframes scan {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
