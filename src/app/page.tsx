@@ -1,12 +1,10 @@
 "use client"
-import styles from './components/Navbar.module.css';
-import Image from 'next/image';
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import styles from "./components/Navbar.module.css"
+import React, { useState, useRef } from 'react';
 import { NextUIProvider, Button, Card } from '@nextui-org/react';
 import Spline from '@splinetool/react-spline';
-import { Navbar, Nav, Container, Row, Col, Toast } from 'react-bootstrap';
+import { Navbar, Nav, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './globals.css';
 import { 
   UilRobot, 
   UilModem, 
@@ -23,71 +21,20 @@ import {
   UilInstagram, 
   UilYoutube, 
   UilGithub,
-  UilAngleRight,
-  UilArrowRight,
-  UilClock,
-  UilMapMarker,
-  UilPhone
+  IconProps,
 } from '@iconscout/react-unicons';
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { Roboto, Orbitron } from 'next/font/google';
 import Link from 'next/link';
+import "./styles.css"
 
-// Font configurations
-const roboto = Roboto({ 
-  subsets: ['latin'], 
-  weight: ['300', '400', '500', '700', '900'],
-  display: 'swap'
-});
 
-const orbitron = Orbitron({ 
-  subsets: ['latin'], 
-  weight: ['400', '500', '600', '700', '800', '900'],
-  display: 'swap'
-});
 
-// Animation variants
-const fadeInUp = {
-  initial: {
-    y: 60,
-    opacity: 0
-  },
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut"
-    }
-  }
-};
 
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
 
-const scaleIn = {
-  initial: {
-    scale: 0.8,
-    opacity: 0
-  },
-  animate: {
-    scale: 1,
-    opacity: 1,
-    transition: {
-      duration: 0.6
-    }
-  }
-};
 
 // Interface definitions
 interface ServiceItem {
-  icon: any;
+  icon: React.FC<IconProps>;
   title: string;
   description: string;
   features: string[];
@@ -104,7 +51,6 @@ interface CaseStudy {
   industry: string;
   duration: string;
   technologies: string[];
-  images: string[];
 }
 
 interface Testimonial {
@@ -116,19 +62,6 @@ interface Testimonial {
   rating: number;
   date: string;
   projectType: string;
-}
-
-interface BlogPost {
-  title: string;
-  excerpt: string;
-  date: string;
-  author: string;
-  category: string;
-  readTime: string;
-  image: string;
-  tags: string[];
-  likes: number;
-  comments: number;
 }
 
 // Services Data with expanded information
@@ -243,7 +176,6 @@ const caseStudies: CaseStudy[] = [
     industry: 'Technology',
     duration: '6 months',
     technologies: ['Python', 'TensorFlow', 'AWS'],
-    images: ['case-study-1.jpg', 'case-study-2.jpg']
   },
   { 
     client: 'E-commerce Giants', 
@@ -255,7 +187,6 @@ const caseStudies: CaseStudy[] = [
     industry: 'E-commerce',
     duration: '9 months',
     technologies: ['React', 'Node.js', 'MongoDB'],
-    images: ['case-study-3.jpg', 'case-study-4.jpg']
   },
   { 
     client: 'Secure Systems Ltd.', 
@@ -267,7 +198,6 @@ const caseStudies: CaseStudy[] = [
     industry: 'Cybersecurity',
     duration: '12 months',
     technologies: ['Python', 'Django', 'AWS'],
-    images: ['case-study-5.jpg', 'case-study-6.jpg']
   },
 ];
 
@@ -279,7 +209,7 @@ const testimonials: Testimonial[] = [
     quote: 'Futuristic World has been instrumental in our digital transformation journey.',
     role: 'CEO',
     image: 'testimonial-1.jpg',
-    rating: 5,
+    rating: 4.5,
     date: 'February 10, 2023',
     projectType: 'Digital Transformation'
   },
@@ -290,7 +220,7 @@ const testimonials: Testimonial[] = [
     role: 'CTO',
     image: 'testimonial-2.jpg',
     rating: 5,
-    date: 'March 15, 2023',
+    date: 'March 15, 2024',
     projectType: 'E-commerce Solutions'
   },
   { 
@@ -299,114 +229,102 @@ const testimonials: Testimonial[] = [
     quote: 'Futuristic World\'s team is highly skilled and dedicated to delivering exceptional results.',
     role: 'Founder',
     image: 'testimonial-3.jpg',
-    rating: 5,
-    date: 'April 20, 2023',
+    rating: 4.5,
+    date: 'April 20, 2024',
     projectType: 'Cybersecurity Solutions'
   },
 ];
 
-// Blog Posts Data with expanded information
-const blogPosts: BlogPost[] = [
-  { 
-    title: 'The Future of AI in Business', 
-    excerpt: 'Explore the latest trends and innovations in AI and its impact on business.',
-    date: 'February 10, 2023',
-    author: 'John Doe',
-    category: 'AI & Machine Learning',
-    readTime: '5 minutes',
-    image: 'blog-post-1.jpg',
-    tags: ['AI', 'Machine Learning', 'Business'],
-    likes: 20,
-    comments: 5
-  },
-  { 
-    title: 'Cybersecurity in the Digital Age ', 
-    excerpt: 'Learn how to protect your digital assets from emerging cyber threats.',
-    date: 'March 15, 2023',
-    author: 'Jane Smith',
-    category: 'Cybersecurity',
-    readTime: '7 minutes',
-    image: 'blog-post-2.jpg',
-    tags: ['Cybersecurity', 'Digital Age', 'Threats'],
-    likes: 30,
-    comments: 10
-  },
-  { 
-    title: 'The Rise of E-commerce', 
-    excerpt: 'Discover the latest trends and strategies for success in the e-commerce landscape.',
-    date: 'April 20, 2023',
-    author: 'Bob Johnson',
-    category: 'E-commerce Solutions',
-    readTime: '9 minutes',
-    image: 'blog-post-3.jpg',
-    tags: ['E-commerce', 'Trends', 'Strategies'],
-    likes: 40,
-    comments: 15
-  },
-];
 
 function App() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    budget: '',
+    message: '',
+  });
+
+  const [status, setStatus] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // Prevent the default form submission behavior
+    setStatus('Sending...'); // Update status to indicate the message is being sent
+
+    try {
+        const response = await fetch('/api/Contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json', // Specify the content type as JSON
+            },
+            body: JSON.stringify(formData), // Convert form data to JSON string
+        });
+
+        if (response.ok) {
+            setStatus('Message sent successfully!'); // Update status on success
+            setFormData({
+                name: '',
+                email: '',
+                phone: '',
+                budget: '',
+                message: '',
+            }); // Reset the form data
+        } else {
+            setStatus('Failed to send message.'); // Update status on failure
+        }
+    } catch (error) {
+        setStatus('An error occurred while sending the message.'); // Handle network or other errors
+        console.error('Error:', error); // Log the error for debugging
+    }
+};
   const [navExpanded, setNavExpanded] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [servicesInView, setServicesInView] = useState(false);
-  const [caseStudiesInView, setCaseStudiesInView] = useState(false);
-  const [testimonialsInView, setTestimonialsInView] = useState(false);
-  const [blogInView, setBlogInView] = useState(false);
 
   const servicesRef = useRef(null);
   const caseStudiesRef = useRef(null);
   const testimonialsRef = useRef(null);
-  const blogRef = useRef(null);
 
-  const { ref: servicesInViewRef } = useInView({
-    threshold: 0.5,
-  });
-  const { ref: caseStudiesInViewRef} = useInView({
-    threshold: 0.5,
-  });
-  const { ref: testimonialsInViewRef} = useInView({
-    threshold: 0.5,
-  });
-  const { ref: blogInViewRef} = useInView({
-    threshold: 0.5,
-  });
 
   return (
     <NextUIProvider>
-       <Navbar id="nav" expand="lg" className={navExpanded ? 'nav-expanded' : ''}>
-      <Container>
-        <Navbar.Brand href="#home" className={styles.logoContainer}>
-          <div className={styles.futuristicLogo}>
-            <span className={styles.logoText}>FUTURISTIC</span>
-            <div className={styles.logoLine}></div>
-            <div className={styles.circuitLines}>
-              <div className={styles.circuitLine}></div>
-              <div className={styles.circuitLine}></div>
-              <div className={styles.circuitLine}></div>
-            </div>
-            <div className={`${styles.corner} ${styles.corner1}`}></div>
-            <div className={`${styles.corner} ${styles.corner2}`}></div>
-            <div className={`${styles.corner} ${styles.corner3}`}></div>
-            <div className={`${styles.corner} ${styles.corner4}`}></div>
-          </div>
-        </Navbar.Brand>
+       <Navbar id="nav" expand="lg" className={`${styles.navbar} ${navExpanded ? styles.navExpanded : ''}`} fixed="top">
+  <Container>
+    <Navbar.Brand href="#home" className={styles.logoContainer}>
+      <div className={styles.futuristicLogo}>
+        <span className={styles.logoText}>FUTURISTIC</span>
+        <div className={styles.logoLine}></div>
+        <div className={styles.circuitLines}>
+          <div className={styles.circuitLine}></div>
+          <div className={styles.circuitLine}></div>
+          <div className={styles.circuitLine}></div>
+        </div>
+        <div className={`${styles.corner} ${styles.corner1}`}></div>
+        <div className={`${styles.corner} ${styles.corner2}`}></div>
+        <div className={`${styles.corner} ${styles.corner3}`}></div>
+        <div className={`${styles.corner} ${styles.corner4}`}></div>
+      </div>
+    </Navbar.Brand>
 
-        <Navbar.Toggle 
-          aria-controls="basic-navbar-nav" 
-          onClick={() => setNavExpanded(!navExpanded)} 
-        />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#services">Services</Nav.Link>
-            <Nav.Link href="#case-studies">Case Studies</Nav.Link>
-            <Nav.Link href="#testimonials">Testimonials</Nav.Link>
-            <Nav.Link href="#blog">Blog</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-
+    <Navbar.Toggle 
+      aria-controls="basic-navbar-nav" 
+      onClick={() => setNavExpanded(!navExpanded)}
+      className={styles.navbarToggle}
+    />
+    <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className={`ms-auto ${styles.navLinks}`}>
+        <Nav.Link href="#home" className={styles.navLink}>Home</Nav.Link>
+        <Nav.Link href="#services" className={styles.navLink}>Services</Nav.Link>
+        <Nav.Link href="#case-studies" className={styles.navLink}>Case Studies</Nav.Link>
+        <Nav.Link href="#testimonials" className={styles.navLink}>Testimonials</Nav.Link>
+        <Nav.Link href="#contact-us" className={styles.navLink}>Contact Us</Nav.Link>
+      </Nav>
+    </Navbar.Collapse>
+  </Container>
+</Navbar>
       <div id="home"className="hero-section" style={{ position: 'relative', height: '100vh', width: '100%' }}>
       {/* Spline Background */}
       <div style={{
@@ -482,141 +400,219 @@ function App() {
         </Container>
       </motion.div></div>
 
-      <section id="services" ref={servicesRef} className="services">
-        <Container>
-          <Row>
-            {services.map((service, index) => (
-              <Col lg={3} key={index}>
-                <Card className="service-card">
-                  <Card>
-                    <service.icon size={40} />
-                    <Card>{service.title}</Card>
-                    <Card>{service.description}</Card>
-                    <ul>
-                      {service.features.map((feature, index) => (
-                        <li key={index}>{feature}</li>
-                      ))}
-                    </ul>
-                  </Card>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </section>
+      <section id="services" ref={servicesRef} className={styles.services}>
+  <Container>
+    <Row className="mb-5">
+      <Col lg={12} className="text-center">
+        <h2 className={styles.sectionHeading}>Our Services</h2>
+        <div className={styles.headingUnderline}></div>
+      </Col>
+    </Row>
+    <Row>
+      {services.map((service, index) => (
+        <Col lg={3} key={index}>
+          <Card className={styles.serviceCard}>
+            <Card>
+              <div className={styles.serviceIcon}>
+                <service.icon size={40} />
+              </div>
+              <Card className={styles.serviceTitle}>{service.title}</Card>
+              <Card className={styles.serviceDescription}>{service.description}</Card>
+              <ul className={styles.serviceFeatures}>
+                {service.features.map((feature, index) => (
+                  <li key={index}>{feature}</li>
+                ))}
+              </ul>
+            </Card>
+          </Card>
+        </Col>
+      ))}
+    </Row>
+  </Container>
+</section>
 
-      <section id="case-studies" ref={caseStudiesRef} className="case-studies">
-        <Container>
-          <Row>
-            {caseStudies.map((study, index) => (
-              <Col lg={4} key={index}>
-                <Card className="case-study-card">
-                  <Card>
-                    <Card>{study.client}</Card>
-                    <Card>{study.result}</Card>
-                    <Card>{study.challenge}</Card>
-                    <Card>{study.solution}</Card>
-                    <Card>{study.impact}</Card>
-                    <Card>{study.testimonial}</Card>
-                    <Card>Industry: {study.industry}</Card>
-                    <Card>Duration: {study.duration}</Card>
-                    <Card>Technologies: {study.technologies.join(', ')}</Card>
-                  </Card>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </section>
+<section id="case-studies" ref={caseStudiesRef} className={styles.caseStudies}>
+  <Container>
+    <Row className="mb-5">
+      <Col lg={12} className="text-center">
+        <h2 className={styles.sectionHeading}>Case Studies</h2>
+        <div className={styles.headingUnderline}></div>
+      </Col>
+    </Row>
+    <Row>
+      {caseStudies.map((study, index) => (
+        <Col lg={4} key={index}>
+          <Card className={styles.caseStudyCard}>
+            <Card>
+              <Card className={styles.caseStudyClient}>{study.client}</Card>
+              <Card className={styles.caseStudyResult}>{study.result}</Card>
+              <div className={styles.caseStudyDetails}>
+                <h5>Challenge:</h5>
+                <p>{study.challenge}</p>
+                <h5>Solution:</h5>
+                <p>{study.solution}</p>
+                <h5>Impact:</h5>
+                <p>{study.impact}</p>
+              </div>
+              {study.testimonial && (
+                <blockquote className={styles.caseStudyTestimonial}>
+                 &quot;{study.testimonial}&quot;
+                </blockquote>
+              )}
+              <div className={styles.caseStudyMeta}>
+                <p><strong>Industry:</strong> {study.industry}</p>
+                <p><strong>Duration:</strong> {study.duration}</p>
+                <p><strong>Technologies:</strong> {study.technologies.join(', ')}</p>
+              </div>
+            </Card>
+          </Card>
+        </Col>
+      ))}
+    </Row>
+  </Container>
+</section>
 
-      <section id="testimonials" ref={testimonialsRef} className="testimonials">
-        <Container>
-          <Row>
-            {testimonials.map((testimonial, index) => (
-              <Col lg={4} key={index}>
-                <Card className="testimonial-card">
-                  <Card>
-                    <Card>{testimonial.name}</Card>
-                    <Card>{testimonial.quote}</Card>
-                    <Card className="company">{testimonial.company}</Card>
-                    <Card className="role">{testimonial.role}</Card>
-                    <Card>Rating: {testimonial.rating}/5</Card>
-                    <Card>Date: {testimonial.date}</Card>
-                    <Card>Project Type: {testimonial.projectType}</Card>
-                  </Card>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </section>
-
-      <section id="blog" ref={blogRef} className="blog">
-        <Container>
-          <Row>
-            {blogPosts.map((post, index) => (
-              <Col lg={4} key={index}>
-                <Card className="blog-post-card">
-                  <Card>
-                    <Card>{post.title}</Card>
-                    <Card>{post.excerpt}</Card>
-                    <Card className="date">{post.date}</Card>
-                    <Card className="author">{post.author}</Card>
-                    <Card className="category">{post.category}</Card>
-                    <Card>Read Time: {post.readTime}</Card>
-                    <Card>Image: <img src={post.image} alt={post.title} /></Card>
-                    <Card>Tags: {post.tags.join(', ')}</Card>
-                    <Card>Likes: {post.likes}</Card>
-                    <Card>Comments: {post.comments}</Card>
-                  </Card>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </section>
-
-      <footer>
-        <Container>
-          <Row>
-            <Col lg={4}>
-              <h5>About Us</h5>
-              <p>
-                Futuristic World is a leading provider of AI, machine learning, and digital transformation solutions.
-              </p>
-            </Col>
-            <Col lg={4}>
-              <h5>Get in Touch</h5>
-              <p>
-                <UilEnvelope size={20} /> <a href="mailto:info@futuristicworld.com ">info@futuristicworld.com</a>
-              </p>
-              <p>
-                <UilTwitter size={20} /> <a href="https://twitter.com/futuristicworld">@futuristicworld</a>
-              </p>
-              <p>
-                <UilLinkedin size={20} /> <a href="https://linkedin.com/company/futuristicworld">Futuristic World</a>
-              </p>
-            </Col>
-            <Col lg={4}>
-              <h5>Follow Us</h5>
-              <p>
-                <UilFacebook size={20} /> <a href="https://facebook.com/futuristicworld">Facebook</a>
-              </p>
-              <p>
-                <UilInstagram size={20} /> <a href="https://instagram.com/futuristicworld">Instagram</a>
-              </p>
-              <p>
-                <UilYoutube size={20} /> <a href="https://youtube.com/futuristicworld">YouTube</a>
-              </p>
-              <p>
-                <UilGithub size={20} /> <a href="https://github.com/futuristicworld">GitHub</a>
-              </p>
-            </Col>
-          </Row>
-        </Container>
-      </footer>
-    </NextUIProvider>
+<section id="testimonials" ref={testimonialsRef} className={styles.testimonials}>
+  <Container>
+    <Row className="mb-5">
+      <Col lg={12} className="text-center">
+        <h2 className={styles.sectionHeading}>Client Testimonials</h2>
+        <div className={styles.headingUnderline}></div>
+      </Col>
+    </Row>
+    <Row>
+      {testimonials.map((testimonial, index) => (
+        <Col lg={4} key={index}>
+          <Card className={styles.testimonialCard}>
+            <Card>
+              <div className={styles.testimonialQuote}>&quot;{testimonial.quote}&quot;</div>
+              <div className={styles.testimonialAuthor}>
+                <h4>{testimonial.name}</h4>
+                <p>{testimonial.role} at {testimonial.company}</p>
+              </div>
+              <div className={styles.testimonialMeta}>
+                <p><strong>Rating:</strong> {testimonial.rating}/5</p>
+                <p><strong>Date:</strong> {testimonial.date}</p>
+                <p><strong>Project Type:</strong> {testimonial.projectType}</p>
+              </div>
+            </Card>
+          </Card>
+        </Col>
+      ))}
+    </Row>
+  </Container></section><div id="contact-us"className={styles.contactContainer}>
+      <h1 className={styles.contactTitle}>Contact Us</h1>
+      <form onSubmit={handleSubmit} className={styles.contactForm}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+          className={styles.contactInput}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          className={styles.contactInput}
+        />
+        <input
+          type="tel"
+          name="phone"
+          placeholder="Your Phone"
+          value={formData.phone}
+          onChange={handleChange}
+          required
+          className={styles.contactInput}
+        />
+        <input
+          type="text"
+          name="budget"
+          placeholder="Your Budget"
+          value={formData.budget}
+          onChange={handleChange}
+          required
+          className={styles.contactInput}
+        />
+        <textarea
+          name="message"
+          placeholder="Your Message"
+          value={formData.message}
+          onChange={handleChange}
+          required
+          className={styles.contactTextarea}
+        />
+        <button type="submit" className={styles.contactButton}>Send Message</button>
+      </form>
+      {status && <p className={styles.status}>{status}</p>}
+      <div className={styles.socialLinks}>
+        <h3>Follow Us</h3>
+        <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">Twitter</a>
+        <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://facebook.com/yourprofile" target="_blank" rel="noopener noreferrer">Facebook</a>
+      </div>
+    </div>
+<footer className={styles.footer}>
+  <Container>
+    <Row>
+      <Col lg={4} className={styles.footerColumn}>
+        <h5 className={styles.footerHeading}>About Us</h5>
+        <p className={styles.footerText}>
+          Futuristic World is a leading provider of AI, machine learning, and digital transformation solutions.
+        </p>
+      </Col>
+      <Col lg={4} className={styles.footerColumn}>
+        <h5 className={styles.footerHeading}>Get in Touch</h5>
+        <ul className={styles.footerList}>
+          <li>
+            <UilEnvelope size={20} className={styles.footerIcon} />
+            <a href="mailto:info@futuristicworld.com">info@futuristicworld.com</a>
+          </li>
+          <li>
+            <UilTwitter size={20} className={styles.footerIcon} />
+            <a href="https://twitter.com/futuristicworld">@futuristicworld</a>
+          </li>
+          <li>
+            <UilLinkedin size={20} className={styles.footerIcon} />
+            <a href="https://linkedin.com/company/futuristicworld">Futuristic World</a>
+          </li>
+        </ul>
+      </Col>
+      <Col lg={4} className={styles.footerColumn}>
+        <h5 className={styles.footerHeading}>Follow Us</h5>
+        <ul className={styles.footerList}>
+          <li>
+            <UilFacebook size={20} className={styles.footerIcon} />
+            <a href="https://facebook.com/futuristicworld">Facebook</a>
+          </li>
+          <li>
+            <UilInstagram size={20} className={styles.footerIcon} />
+            <a href="https://instagram.com/futuristicworld">Instagram</a>
+          </li>
+          <li>
+            <UilYoutube size={20} className={styles.footerIcon} />
+            <a href="https://youtube.com/futuristicworld">YouTube</a>
+          </li>
+          <li>
+            <UilGithub size={20} className={styles.footerIcon} />
+            <a href="https://github.com/futuristicworld">GitHub</a>
+          </li>
+        </ul>
+      </Col>
+    </Row>
+    <Row>
+      <Col lg={12} className={styles.footerCopyright}>
+        <p>&copy; 2024 Futuristic World. All rights reserved.</p>
+      </Col>
+    </Row>
+  </Container>
+</footer></NextUIProvider>
   );
-}
+  };
 
 export default App;
