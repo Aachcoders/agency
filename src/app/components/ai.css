@@ -1,0 +1,319 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif; /* Updated font */
+  background: #0a0a0a;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Global Styles */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: normal;
+  color: #ffffff;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); /* Added text shadow */
+}
+
+p {
+  line-height: 1.6;
+  color: #e0e0e0; /* Slightly lighter text color */
+}
+
+/* Links */
+a {
+  color: #00f7ff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500; /* Added font weight */
+}
+
+a:hover {
+  color: #ff00ff;
+  text-shadow: 0 0 5px #ff00ff; /* Added hover effect */
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Hero Section */
+.heroSection {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 100px 0;
+  background: linear-gradient(45deg, rgba(10, 10, 10, 0.8), rgba(0, 0, 0, 0.8));
+}
+
+.heroText h1 {
+  font-family: 'Orbitron', sans-serif; /* Updated font */
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(45deg, #00f7ff, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Added text shadow */
+}
+
+.heroText p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #cccccc;
+}
+
+.heroCTA {
+  background: linear-gradient(45deg, #00f7ff, #ff00ff);
+  border: none;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 247, 255, 0.2); /* Added shadow */
+}
+
+.heroCTA:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 247, 255, 0.4); /* Enhanced hover shadow */
+}
+
+/* AI Services Section */
+.aiServicesSection {
+  padding: 80px 0;
+  background: #0f0f0f;
+}
+
+.aiServicesTitle h2 {
+  color: var(--primary-color);
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.aiServicesTitle p {
+  font-size: 1.1em;
+  margin-bottom: 40px;
+}
+
+.aiServiceCard {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Added shadow */
+}
+
+.aiServiceCard:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Enhanced hover shadow */
+}
+/* AI Service Card Title */
+.aiServiceCard h3 {
+  color: #00f7ff;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+
+/* AI Service Card Description */
+.aiServiceCard p {
+  margin-bottom: 20px;
+}
+
+/* Case Studies Section */
+.caseStudiesSection {
+  padding: 100px 0;
+  background: #0a0a0a;
+}
+
+.caseStudiesTitle h2 {
+  color: var(--primary-color);
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.caseStudiesTitle p {
+  font-size: 1.1em;
+  margin-bottom: 40px;
+}
+
+.caseStudyCard {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Added shadow */
+}
+
+.caseStudyCard h3 {
+  color: #00f7ff;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+
+.caseStudyCard p {
+  margin-bottom: 15px;
+}
+
+/* Testimonials Section */
+.testimonialsSection {
+  padding: 100px 0;
+  background: #0f0f0f;
+}
+
+.testimonialsTitle h2 {
+  color: var(--primary-color);
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.testimonialsTitle p {
+  font-size: 1.1em;
+  margin-bottom: 40px;
+}
+
+.testimonialCard {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Added shadow */
+}
+
+.testimonialCard blockquote {
+  font-style: italic;
+  color: #00f7ff;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+/* Contact Section */
+.contactSection {
+  padding: 100px 0;
+  background: #0a0a0a;
+}
+
+.contactTitle h2 {
+  color: var(--primary-color);
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.contactTitle p {
+  font-size: 1.1em;
+  margin-bottom: 40px;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactForm input,
+.contactForm textarea {
+  margin-bottom: 20px;
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.contactForm input:focus,
+.contactForm textarea:focus {
+  box-shadow: 0 0 10px rgba(0, 247, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.contactForm button {
+  background: linear-gradient(45deg, #00f7ff, #ff00ff);
+  color: white;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 247, 255, 0.2); /* Added shadow */
+}
+
+.contactForm button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 247, 255, 0.4); /* Enhanced hover shadow */
+}
+
+/* Footer */
+/* Footer */
+footer {
+  padding: 50px 0;
+  background: #0f0f0f;
+  color: #cccccc;
+}
+
+footer h5 {
+  margin-bottom: 1rem;
+  font-size: 1.5em;
+  color: #00f7ff; /* Footer heading color */
+}
+
+footer p {
+  margin-bottom: 1.5rem;
+}
+
+footer a {
+  color: #00f7ff;
+  transition: all 0.3s ease;
+}
+
+footer a:hover {
+  color: #ff00ff;
+  text-shadow: 0 0 5px #ff00ff; /* Added hover effect */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .heroText h1 {
+    font-size: 2.5rem; /* Adjusted for smaller screens */
+  }
+
+  .aiServiceCard,
+  .caseStudyCard,
+  .testimonialCard {
+    padding: 1.5rem; /* Adjusted padding for smaller screens */
+  }
+
+  .contactForm input,
+  .contactForm textarea {
+    padding: 0.8rem; /* Adjusted padding for smaller screens */
+  }
+
+  .contactForm button {
+    padding: 0.8rem 1.5rem; /* Adjusted button size for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .heroText h1 {
+    font-size: 2rem; /* Further adjustment for very small screens */
+  }
+
+  .aiServiceCard h3,
+  .caseStudyCard h3,
+  .testimonialCard blockquote {
+    font-size: 1.2em; /* Adjusted font size for smaller screens */
+  }
+}

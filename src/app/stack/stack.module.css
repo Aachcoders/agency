@@ -1,0 +1,277 @@
+
+
+/* Hero Section */
+.heroSection {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+              url('/images/hero-bg.jpg') center/cover; /* Replace with your image path */
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 2rem;
+}
+
+.heroText h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: fadeInDown 1s ease-out;
+}
+
+.heroText p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  animation: fadeInUp 1s ease-out;
+}
+
+/* Button Styles */
+.heroCTA {
+  margin: 0.5rem;
+}
+
+/* Services Section */
+.servicesSection {
+  padding: 5rem 0;
+  background: #f8f9fa;
+}
+
+.servicesTitle {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.serviceCard {
+  padding: 2rem;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  margin-bottom: 2rem;
+  background: white;
+}
+
+.serviceCard h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+/* Case Studies Section */
+.caseStudiesSection {
+  padding: 5rem 0;
+}
+
+.caseStudiesTitle {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.caseStudyCard {
+  padding: 2rem;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  background: white;
+}
+
+.clientInfo {
+  color: #666;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.challengeSection,
+.solutionSection,
+.resultsSection {
+  margin-bottom: 1.5rem;
+}
+
+.testimonialQuote {
+  font-style: italic;
+  color: #666;
+  border-left: 3px solid #007bff;
+  padding-left: 1rem;
+}
+
+/* Testimonials Section */
+.testimonialsSection {
+  padding: 5rem 0;
+}
+
+.testimonialsTitle {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.testimonialCard {
+  padding: 2rem;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.quote {
+  font-size: 1.2rem;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+.testimonialAuthor {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+}
+
+.authorName {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.authorPosition {
+  color: #666;
+}
+
+/* Contact Section */
+.contactSection {
+  padding: 5rem 0;
+  background: #f8f9fa;
+}
+
+.contactTitle {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contactForm {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formInput,
+.formTextarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.formTextarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  background: #007bff;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ```css
+}
+
+/* Submit Button Hover Effect */
+.submitButton:hover {
+  background: #0056b3;
+}
+
+/* Contact Information */
+.contactInfo {
+  margin-top: 2rem;
+}
+
+.contactDetails {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.contactItem a {
+  margin-left: 0.5rem;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.contactItem a:hover {
+  text-decoration: underline;
+}
+
+/* Footer Styles */
+.footer {
+  background: #343a40;
+  color: white;
+  padding: 2rem 0;
+}
+
+.footerColumn {
+  margin-bottom: 1.5rem;
+}
+
+.footerHeading {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.footerText {
+  font-size: 1rem;
+}
+
+.footerList {
+  list-style: none;
+  padding: 0;
+}
+
+.footerList li {
+  margin-bottom: 0.5rem;
+}
+
+.footerIcon {
+  color: #007bff;
+  margin-right: 0.5rem;
+}
+
+.footerCopyright {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

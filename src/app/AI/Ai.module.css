@@ -1,0 +1,273 @@
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Hero Section */
+.heroSection {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 100px 0;
+  background: linear-gradient(45deg, rgba(10, 10, 10, 0.8), rgba(0, 0, 0, 0.8)),url('/ai.webp') no-repeat center center/cover;
+}
+.heroImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heroText h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(45deg, #00f7ff, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+.heroText p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #ffffff; /* Changed to white for better readability */
+}
+
+.heroCT,
+.heroCTA {
+  background: linear-gradient(90deg, #00f8ff, #ff09ff);
+  border: none;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 247, 255, 0.2);
+  color: #ffffff; /* Ensure text is white */
+}
+
+.heroCTA:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 247, 255, 0.4);
+}
+
+/* AI Services Section */
+.aiServicesSection {
+  padding: 80px 0;
+  background: #0f0f0f;
+}
+
+.aiServicesTitle h2,
+.caseStudiesTitle h2,
+.testimonialsTitle h2,
+.contactTitle h2 {
+  color: #ffffff; /* Changed to white for emphasis */
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 247, 255, 0.3); /* Added glow effect */
+}
+
+.aiServicesTitle p,
+.caseStudiesTitle p,
+.testimonialsTitle p,
+.contactTitle p {
+  font-size: 1.1em;
+  margin-bottom: 40px;
+  color: #cccccc; /* Light gray for contrast */
+}
+
+.aiServiceCard,
+.caseStudyCard,
+.testimonialCard {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.aiServiceCard:hover,
+.caseStudyCard:hover,
+.testimonialCard:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.3); /* Lighter border on hover */
+}
+
+.aiServiceCard h3,
+.caseStudyCard h3 {
+  color: #00f7ff; /* Bright color for titles */
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 3px rgba(0, 247, 255, 0.5); /* Added subtle glow */
+}
+
+.aiServiceCard p,
+.caseStudyCard p,
+.testimonialCard blockquote {
+  margin-bottom: 20px;
+  color: #ffffff; /* Changed to white */
+}
+
+/* Testimonials Section */
+.testimonialsSection {
+  padding: 100px 0;
+  background: #0f0f0f;
+}
+
+/* Contact Section */
+.contactSection {
+  padding: 100px 0;
+  background: #0a0a0a;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.contactForm input,
+.contactForm textarea {
+  margin-bottom: 20px;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Added light border */
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.contactForm input::placeholder,
+.contactForm textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6); /* Lighter placeholder text */
+}
+
+.contactForm input:focus,
+.contactForm textarea:focus {
+  outline: none;
+  border-color: #ffffff; /* White border on focus */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.contactForm button {
+  background: linear-gradient(45deg, #00f7ff, #ff00ff);
+  color: white;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 247, 255, 0.2);
+}
+
+.contactForm button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 247, 255, 0.4);
+}
+
+/* Footer */
+.footer {
+  background-color: #0a0a0a;
+  padding: 60px 0 30px;
+  color: #ffffff;
+}
+
+.footerColumn {
+  margin-bottom: 30px;
+}
+
+.footerHeading {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  color: #00f7ff;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 3px rgba(0, 247, 255, 0.3); /* Added subtle glow */
+}
+
+.footerText {
+  color: #cccccc;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.footerList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerList li {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.footerIcon {
+  font-size: 0.8rem; /* Reduced font size for smaller icons */
+  margin-right: 0.8rem;
+  color: #00f7ff;
+  transition: color 0.3s ease;
+}
+
+.footerList a {
+  color: #cccccc; /* Light gray for links */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footerList a:hover,
+.footerIcon:hover {
+  color: #00f7ff; /* Change color on hover */
+}
+
+.footerCopyright {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #888888;
+  font-size: 0.8rem;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .heroText h1 {
+    font-size: 2.5rem; /* Adjusted for smaller screens */
+  }
+
+  .aiServiceCard,
+  .caseStudyCard,
+  .testimonialCard {
+    padding: 1.5rem; /* Adjusted padding for smaller screens */
+  }
+
+  .contactForm input,
+  .contactForm textarea {
+    padding: 0.8rem; /* Adjusted padding for smaller screens */
+  }
+
+  .contactForm button {
+    padding: 0.8rem 1.5rem; /* Adjusted button size for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .heroText h1 {
+    font-size: 2rem; /* Further adjustment for very small screens */
+  }
+
+  .aiServiceCard h3,
+  .caseStudyCard h3,
+  .testimonialCard blockquote {
+    font-size: 1.2em; /* Adjusted font size for smaller screens */
+  }
+}
